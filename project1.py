@@ -1,13 +1,14 @@
+from IPython.display import clear_output
 def basic_info():
     print("Welcome to Tic Tac Toe Board Game.")
     choice = "Wrong"
     choice1 = 'Wrong'
     while choice != 'Y':
         user1 = input("Please Your Name as User 1: ")
-        choice = input(f"Your Name is {user1}, Correct? Y or N: ")
+        choice = input(f"Your Name is {user1}, Correct? Y or N: ").upper()
     while choice1 != 'Y':
         user2 = input("Please Your Name as User 2: ")
-        choice1 = input(f"Your Name is {user2}, Correct? Y or N: ")
+        choice1 = input(f"Your Name is {user2}, Correct? Y or N: ").upper()
     return [user1,user2]
 
 def board_pattern():
@@ -22,6 +23,7 @@ def board_pattern():
 def playing():
     board = board_pattern()
     count = 0
+    clear_output()
     while count < 9:
         varis = input("Select position and mark. (format: posi,mark) ")
         posi,mark = varis.split(',')
@@ -60,15 +62,15 @@ def interact():
     hashmap = {user1:'X',user2:'O'}
     for board in board_pattern():# print origenal board
         print(board)
-    continues_game = input('Do you want to continue the game? Y or N ')
-    if continues_game == 'Y' or 'y':
+    continues_game = input('Do you want to continue the game? Y or N ').upper()
+    if continues_game == 'Y':
         print(f"First user will always go first, and {user1} uses X and {user2} uses O")
         status,mark = playing()
         if status == True:
             print(f'{list(hashmap.keys())[list(hashmap.values()).index(mark)]} is the winner') # This line to use value to get key
         else:
             print('Game is tied. No winner.')
-    elif continues_game == 'N' or 'n':
+    elif continues_game == 'N':
             print('Closing Game.')
 
 interact()
