@@ -1,5 +1,5 @@
 import random
-from colorama import Fore, Style
+from colorama import Fore, Style # Color in termernal
 
 suits = ('Hearts', 'Diamonds', 'Spades', 'Clubs')# initialization for the value of the cards
 ranks = ('Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King', 'Ace')# initialization for the value of the cards
@@ -33,7 +33,6 @@ class Deck:
     def shuffle(self):
         random.shuffle(self.all_cards)
 
-
     def draw(self):
         return self.all_cards.pop()
 
@@ -60,7 +59,7 @@ def sumup(player_cards):
             card_value = card_values.value
         except:
             card_value = card
-            
+
         player_number.append(card_value)
         total_sum = sum(player_number)
     
@@ -118,12 +117,12 @@ while game_on:
         print(Fore.BLUE,f"{initial_name.name} has {total_sum} point.")
         print(f"{Fore.BLUE}{Style.RESET_ALL}")
         # Dealer play (Bot)
-        print(f'{initial_name.BotName} turns.')
+        print(f'{initial_name.BotName}\'s turns.') # Look at this
         total_sum_bot,bot_number = sumup(dealer_cards)
         if total_sum_bot == 21:
             print(Fore.RED,f'You lose. {initial_name.BotName} has 21')
             break
-        
+        # Bot make simple decision if sum less than 18 
         while total_sum_bot < 21 and game_on == True:
             # total sum need to less than 21 and bigger than 18. 
             if total_sum_bot  < 18:
@@ -143,6 +142,7 @@ while game_on:
             if total_sum_bot > 21:
                 print(Fore.RED,f"{initial_name.BotName} has {total_sum_bot}. {initial_name.BotName} Busted. {initial_name.name} win!")
                 break
+        #End
 
         # If there is no Busted, Run this block
         if total_sum > total_sum_bot:
